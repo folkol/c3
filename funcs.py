@@ -54,3 +54,9 @@ def ints_to_ascii(ints):
 
 def hex_to_ascii(hex_string):
     return ints_to_ascii(hex_to_ints(hex_string))
+
+
+def encrypt_repeating_key_xor(msg, key):
+    from itertools import cycle
+    as_ints = ascii_to_ints(msg)
+    return ints_to_hex(i ^ ord(k) for i, k in zip(as_ints, cycle(key)))
