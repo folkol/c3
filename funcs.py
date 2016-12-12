@@ -34,7 +34,7 @@ def hex_to_base64(hex_string):
 
 
 def assert_equals(expected, actual):
-    assert expected == actual, "Expected '{}', but got '{}'.".format(expected, actual)
+    assert expected == actual, "Expected/actual: \n\t'{}'\n\t'{}'.".format(expected, actual)
 
 
 def ascii_to_ints(string):
