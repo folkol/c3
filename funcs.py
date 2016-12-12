@@ -10,7 +10,7 @@ def hex_to_ints(hex_string):
 
 
 def ints_to_hex(ints):
-    as_hex = (format(x, 'x') for x in ints)
+    as_hex = (format(x, '02x') for x in ints)
     return ''.join(as_hex)
 
 
@@ -19,16 +19,12 @@ def ints_to_base64(ints):
 
     No padding support, which means that len(ints) must be a multiple of 3."""
 
-    def to_binary_string(i):
-        """Encodes the given number i as a binary string and strips the leading '0b'."""
-        return format(i, 'b').zfill(8)
-
     from string import ascii_uppercase, ascii_lowercase, digits
     numerals = ascii_uppercase + ascii_lowercase + digits + '+/'
 
-    as_binary = (to_binary_string(x) for x in ints)
-    binary_string = ''.join(as_binary)
-    return ''.join([numerals[int(x, 2)] for x in chunkify(binary_string, 6)])
+    as_binary = (format(i, '08b') for i in ints)
+    as_binary_string = ''.join(as_binary)
+    return ''.join([numerals[int(x, 2)] for x in chunkify(as_binary_string, 6)])
 
 
 def hex_to_base64(hex_string):
