@@ -54,8 +54,3 @@ def ints_to_ascii(ints):
 
 def hex_to_ascii(hex_string):
     return ints_to_ascii(hex_to_ints(hex_string))
-
-
-def xor(s1, s2):
-    """Pairwise xor of hex coded ints."""
-    return ints_to_hex([a ^ b for a, b in zip(hex_to_ints(s1), hex_to_ints(s2))])

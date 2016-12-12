@@ -7,8 +7,6 @@ References:
 from funcs import *
 from funcs import ints_to_ascii
 
-onetwo = __import__('1_2')
-
 
 def decode(hex_string, key):
     """Decrypts the xor-ciphered and hex encoded message."""
@@ -25,4 +23,5 @@ def score(message):
 if __name__ == "__main__":
     ciphertext = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
     message_candidates = (decode(ciphertext, x) for x in range(0, 256))
+
     print(max(message_candidates, key=score))
