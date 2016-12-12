@@ -9,6 +9,11 @@ def hex_to_ints(hex_string):
     return [int(chars, 16) for chars in chunkify(hex_string, 2)]
 
 
+def ints_to_hex(ints):
+    as_hex = (format(x, 'x') for x in ints)
+    return ''.join(as_hex)
+
+
 def ints_to_base64(ints):
     """Converts a list of ints, interpreted as byte values, to base64.
 
@@ -16,13 +21,13 @@ def ints_to_base64(ints):
 
     def to_binary_string(i):
         """Encodes the given number i as a binary string and strips the leading '0b'."""
-        strip_0b = bin(i)[2:]
-        return strip_0b.zfill(8)
+        return format(i, 'b').zfill(8)
 
     from string import ascii_uppercase, ascii_lowercase, digits
     numerals = ascii_uppercase + ascii_lowercase + digits + '+/'
 
-    binary_string = ''.join(to_binary_string(x) for x in ints)
+    as_binary = (to_binary_string(x) for x in ints)
+    binary_string = ''.join(as_binary)
     return ''.join([numerals[int(x, 2)] for x in chunkify(binary_string, 6)])
 
 
